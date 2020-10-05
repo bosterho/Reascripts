@@ -6,7 +6,7 @@ else
 	goto exit
 end
 
-retval = ultraschall.MediaExplorer_OnCommand(1013) -- Browser: Browse selected folder, or insert selected media file
+retval = ultraschall.MediaExplorer_OnCommand(41001) -- insert item on new track
 retval = ultraschall.MediaExplorer_OnCommand(40016) -- Unload current preview media
 reaper.SetCursorContext(1, 0) -- focus arrange
 
@@ -39,7 +39,7 @@ function Ostertoaster_pseudo_destructive_normalize()
 		local take = reaper.GetTake(item, curtake)
 		local pcm_source = reaper.GetMediaItemTake_Source(take)
 		local filenamebuf = ""
-		local filenamebuf = reaper.GetMediaSourceFileName(pcm_source, filenamebuf)
+		filenamebuf = reaper.GetMediaSourceFileName(pcm_source, filenamebuf)
 		filenamebuf = filenamebuf:match("(.+)%..+") -- remove extension
 		filenamebuf = filenamebuf:gsub("\\", "/") -- switch to forward slashes
 		return filenamebuf, pcm_source, take
